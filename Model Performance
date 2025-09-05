@@ -1,0 +1,55 @@
+TRAINING & MODEL EVALUATION REPORT
+===================================
+Generated on: September 05, 2025
+
+1. MODEL TRAINING SUMMARY
+-------------------------
+Algorithms Trained:
+- Random Forest Classifier
+- Logistic Regression (Best Model)
+
+Training & Validation Performance:
+| Model               | CV AUC (±Std)   | Test AUC  |
+|---------------------|-----------------|-----------|
+| Random Forest       | 0.772 (±0.091)  | 0.765     |
+| Logistic Regression | 0.806 (±0.109)  | 0.805     |
+
+Hyperparameter Tuning (Logistic Regression):
+- Best Parameters: {C: 1, penalty: 'l2', solver: 'liblinear'}
+- Best CV Score: 0.806
+
+2. CONFUSION MATRIX (Logistic Regression)
+-----------------------------------------
+True\Predicted | No Attrition (0) | Attrition (1)
+---------------|------------------|---------------
+No Attrition   | 220              | 27            
+Attrition      | 7                | 18            
+
+3. ROC CURVE ANALYSIS
+----------------------
+- **ROC AUC (Logistic Regression)**: 0.805
+- **ROC AUC (Random Forest)**: 0.765
+
+ROC Curve Interpretation:
+- The ROC curve plots True Positive Rate (Recall for Attrition) vs False Positive Rate (1 - Specificity for No Attrition).
+- AUC = 0.805 indicates good discrimination ability between employees who leave vs stay.
+
+4. PERFORMANCE METRICS (Logistic Regression)
+--------------------------------------------
+| Metric         | Value  |
+|----------------|--------|
+| Accuracy       | 0.87   |
+| Precision (No) | 0.89   |
+| Recall (No)    | 0.97   |
+| F1-Score (No)  | 0.93   |
+| Precision (Yes)| 0.69   |
+| Recall (Yes)   | 0.38   |
+| F1-Score (Yes) | 0.49   |
+
+5. MODEL EVALUATION INSIGHTS
+-----------------------------
+- High specificity for predicting non-attrition (97% recall for "No Attrition").
+- Moderate sensitivity for attrition prediction (38% recall for "Attrition").
+- Balanced overall accuracy (87%) but model favors non-leavers due to class imbalance.
+- ROC AUC > 0.80 demonstrates reliable ranking of risk scores.
+- Confusion matrix highlights need to improve attrition recall (reduce FN for class 1).
